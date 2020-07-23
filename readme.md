@@ -59,6 +59,7 @@ Plugin to send email after execution with results.
     -> --eorg - Organization name to include in email
     -> --esend - Send email based on input
     -> --eanon - Do not use SMTP auth
+    -> --esendonerror - Sends email only when some tests are failed or error
     ```
 
     __USAGE__

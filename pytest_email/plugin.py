@@ -39,10 +39,14 @@ def pytest_addoption(parser):
 
     group.addoption(
         '--esend',
-        action='store',
-        dest='esend',
-        default="False",
+        action='store_true',
         help='Sends email when --esend is True'
+    )
+
+    group.addoption(
+        '--esendonerror',
+        action='store_true',
+        help='Sends email only when some tests are failed or error'
     )
 
     group.addoption(
@@ -97,7 +101,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config):
 
     pass_percentage = 0 if total_tests == 0 else round(passed_tests*100.0/total_tests,2)
 
-    if config.option.esend == "True":
+    if config.option.esend == True or (config.option.esendonerror==True and (failed_tests != 0 or error_tests != 0)):
 
         send_email(str(config.option.esubject),str(config.option.esmtp),
         str(config.option.euname),str(config.option.epwd),
