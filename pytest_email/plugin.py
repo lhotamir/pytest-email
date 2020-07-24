@@ -46,13 +46,17 @@ def pytest_addoption(parser):
 
     group.addoption(
         '--esend',
-        action='store_true',
+        action='store',
+        type=bool,
+        default=False,
         help='Sends email when --esend is True'
     )
 
     group.addoption(
         '--esendonerror',
-        action='store_true',
+        action='store',
+        type=bool,
+        default=False,
         help='Sends email only when some tests are failed or error'
     )
 
