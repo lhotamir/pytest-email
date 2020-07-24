@@ -47,7 +47,7 @@ def pytest_addoption(parser):
     group.addoption(
         '--esend',
         action='store',
-        type=bool,
+        type=lambda x: (str(x).lower() == 'true'),
         default=False,
         help='Sends email when --esend is True'
     )
@@ -55,7 +55,7 @@ def pytest_addoption(parser):
     group.addoption(
         '--esendonerror',
         action='store',
-        type=bool,
+        type=lambda x: (str(x).lower() == 'true'),
         default=False,
         help='Sends email only when some tests are failed or error'
     )
